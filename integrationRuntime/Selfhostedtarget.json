@@ -1,0 +1,6 @@
+{
+	"name": "Selfhostedtarget",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
