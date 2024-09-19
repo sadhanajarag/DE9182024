@@ -1,17 +1,17 @@
 {
-	"name": "SqlServer1",
+	"name": "SqlServer1_self_hosted",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"server": "SADHANA_PATIL",
+			"server": "sadhana_jarag",
 			"database": "SOURCE",
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "Windows",
-			"userName": "SADHANA_PATIL\\Sadha",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwNzBiZDNiNS0yNjVjLTQwYzQtYThmOC1hMDVmZTU3YTI5ZmEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"userName": "sadhana_patil/Sadha",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiMzg2OThiYy1iYWU3LTQxZGUtOGUxYi0xYTUwOGY5Njc2NmMiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "Self-hosted-new",

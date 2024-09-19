@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDatabase1_Target1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "sadhanasql.database.windows.net",
+			"database": "Target",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "sadhana",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDIzRERFOTU1LUI2QjgtNDQwMi1BOEU3LTM3OTQ1MkUwMjIxMV8xMWI0NDkzNi0zYjU5LTQ3YjQtOWQwYS00MTdhY2FjZGMyOWQiDQp9"
+		}
+	}
+}
