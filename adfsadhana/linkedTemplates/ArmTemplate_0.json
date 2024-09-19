@@ -1,0 +1,1104 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfsadhana"
+		},
+		"AzureSqlDatabase1_Target1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1_Target1'"
+		},
+		"Is_adls_sadhana_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Is_adls_sadhana'"
+		},
+		"Is_adlsgen2_linked_ser_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Is_adlsgen2_linked_ser'"
+		},
+		"Is_adsl_sadhanaadsl_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Is_adsl_sadhanaadsl'"
+		},
+		"is_azursql_db_ls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'is_azursql_db_ls'"
+		},
+		"SqlServer1_self_hosted_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServer1_self_hosted'"
+		},
+		"AzureSqlDatabase1_Target1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sadhanasql.database.windows.net"
+		},
+		"AzureSqlDatabase1_Target1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Target"
+		},
+		"AzureSqlDatabase1_Target1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sadhana"
+		},
+		"Is_adls_sadhana_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadhanaadls.dfs.core.windows.net/"
+		},
+		"Is_adlsgen2_linked_ser_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadhanaadls.dfs.core.windows.net/"
+		},
+		"Is_adsl_sadhanaadsl_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadhanaadsl.dfs.core.windows.net/"
+		},
+		"is_azursql_db_ls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sadhanasql.database.windows.net"
+		},
+		"is_azursql_db_ls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SOURCE"
+		},
+		"is_azursql_db_ls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Sadhana"
+		},
+		"SqlServer1_self_hosted_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sadhana_jarag"
+		},
+		"SqlServer1_self_hosted_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SOURCE"
+		},
+		"SqlServer1_self_hosted_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sadhana_patil/Sadha"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1_Target1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AzureSqlDatabase1_Target1_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSqlDatabase1_Target1_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSqlDatabase1_Target1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSqlDatabase1_Target1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Is_adls_sadhana')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Is_adls_sadhana_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Is_adls_sadhana_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Is_adlsgen2_linked_ser')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Is_adlsgen2_linked_ser_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Is_adlsgen2_linked_ser_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Is_adsl_sadhanaadsl')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Is_adsl_sadhanaadsl_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Is_adsl_sadhanaadsl_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/is_azursql_db_ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('is_azursql_db_ls_properties_typeProperties_server')]",
+					"database": "[parameters('is_azursql_db_ls_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('is_azursql_db_ls_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('is_azursql_db_ls_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Self-hosted-new')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_datafile_input_employee')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Is_adls_sadhana",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "employee.csv",
+						"folderPath": "input",
+						"fileSystem": "datafiles"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Is_adls_sadhana')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServer1_self_hosted')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('SqlServer1_self_hosted_properties_typeProperties_server')]",
+					"database": "[parameters('SqlServer1_self_hosted_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "Windows",
+					"userName": "[parameters('SqlServer1_self_hosted_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('SqlServer1_self_hosted_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "Self-hosted-new",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/Self-hosted-new')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1_df_scd_type2')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"linkedService": {
+								"referenceName": "is_azursql_db_ls",
+								"type": "LinkedServiceReference"
+							},
+							"name": "srcCustomer"
+						},
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1_Target1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "trgCustomer"
+						}
+					],
+					"sinks": [
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1_Target1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink1"
+						},
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1_Target1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink2"
+						}
+					],
+					"transformations": [
+						{
+							"name": "trgSelect"
+						},
+						{
+							"name": "srcSelect"
+						},
+						{
+							"name": "lookup1"
+						},
+						{
+							"name": "split1"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "filter1"
+						},
+						{
+							"name": "union1"
+						},
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "select3"
+						},
+						{
+							"name": "select4"
+						},
+						{
+							"name": "derivedColumn2"
+						},
+						{
+							"name": "alterRow1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          CustomerID as integer,",
+						"          CustomerName as string,",
+						"          Location as string,",
+						"          Sales as decimal(19,4)",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'query',",
+						"     store: 'sqlserver',",
+						"     query: 'select * from CUSTOMER_New',",
+						"     isolationLevel: 'READ_UNCOMMITTED') ~> srcCustomer",
+						"source(output(",
+						"          CustomerKey as integer,",
+						"          CustomerID as integer,",
+						"          CustomerName as string,",
+						"          Location as string,",
+						"          Sales as decimal(19,4)",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'query',",
+						"     store: 'sqlserver',",
+						"     query: 'select \\n     CustomerKey,\\n     CustomerID,\\n     CustomerName,\\n     Location,\\n     Sales\\nFrom customer_new\\nwhere EndDate is null',",
+						"     isolationLevel: 'READ_UNCOMMITTED') ~> trgCustomer",
+						"trgCustomer select(mapColumn(",
+						"          trg_CustomerKey = CustomerKey,",
+						"          trg_CustomerID = CustomerID,",
+						"          trg_CustomerName = CustomerName,",
+						"          trg_Location = Location,",
+						"          trg_Sales = Sales",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> trgSelect",
+						"srcCustomer select(mapColumn(",
+						"          src_CustomerID = CustomerID,",
+						"          src_CustomerName = CustomerName,",
+						"          src_Location = Location,",
+						"          src_Sales = Sales",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> srcSelect",
+						"srcSelect, trgSelect lookup(src_CustomerID == trg_CustomerID,",
+						"     multiple: false,",
+						"     pickup: 'any',",
+						"     broadcast: 'auto')~> lookup1",
+						"lookup1 split(isNull(trg_CustomerID),",
+						"     disjoint: false) ~> split1@(NewRecord, ExistedRecord)",
+						"split1@NewRecord select(mapColumn(",
+						"          CustomerID = src_CustomerID,",
+						"          CustomerName = src_CustomerName,",
+						"          Location = src_Location,",
+						"          Sales = src_Sales",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"split1@ExistedRecord filter(iif(src_CustomerName!=trg_CustomerName||src_Location!=trg_Location||src_Sales!=trg_Sales,true(),false())) ~> filter1",
+						"select1, filter1 union(byName: true)~> union1",
+						"union1 derive(StartDate = currentUTC()) ~> derivedColumn1",
+						"filter1 select(mapColumn(",
+						"          src_CustomerID,",
+						"          src_CustomerName,",
+						"          src_Location,",
+						"          src_Sales,",
+						"          trg_CustomerKey,",
+						"          trg_CustomerID,",
+						"          trg_CustomerName,",
+						"          trg_Location,",
+						"          trg_Sales",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select3",
+						"filter1 select(mapColumn(",
+						"          CustomerKey = trg_CustomerKey",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select4",
+						"select4 derive(EndDate = currentUTC()) ~> derivedColumn2",
+						"derivedColumn2 alterRow(updateIf(1==1)) ~> alterRow1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'table',",
+						"     store: 'sqlserver',",
+						"     schemaName: 'dbo',",
+						"     tableName: 'CUSTOMER_New',",
+						"     insertable: true,",
+						"     updateable: false,",
+						"     deletable: false,",
+						"     upsertable: false,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+						"alterRow1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'table',",
+						"     store: 'sqlserver',",
+						"     schemaName: 'dbo',",
+						"     tableName: 'CUSTOMER_New',",
+						"     insertable: false,",
+						"     updateable: true,",
+						"     deletable: false,",
+						"     upsertable: false,",
+						"     keys:['CustomerKey'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/is_azursql_db_ls')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1_Target1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1_scd_type1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"linkedService": {
+								"referenceName": "is_azursql_db_ls",
+								"type": "LinkedServiceReference"
+							},
+							"name": "srcCustomer"
+						},
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1_Target1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "srcTarget"
+						}
+					],
+					"sinks": [
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1_Target1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink1"
+						},
+						{
+							"linkedService": {
+								"referenceName": "AzureSqlDatabase1_Target1",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink2"
+						}
+					],
+					"transformations": [
+						{
+							"name": "srcselect1"
+						},
+						{
+							"name": "trgselect1"
+						},
+						{
+							"name": "DoesNotExist"
+						},
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "lookup1"
+						},
+						{
+							"name": "filter1"
+						},
+						{
+							"name": "derivedColumn2"
+						},
+						{
+							"name": "filter2"
+						},
+						{
+							"name": "select2"
+						},
+						{
+							"name": "alterRow1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          CustomerID as integer,",
+						"          CustomerName as string,",
+						"          Location as string,",
+						"          Sales as decimal(19,4)",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'query',",
+						"     store: 'sqlserver',",
+						"     query: 'select CustomerID,CustomerName,Location,Sales from CUSTOMER_New',",
+						"     isolationLevel: 'NONE') ~> srcCustomer",
+						"source(output(",
+						"          CustomerID as integer,",
+						"          CustomerName as string,",
+						"          Location as string,",
+						"          Sales as decimal(19,4)",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'query',",
+						"     store: 'sqlserver',",
+						"     query: '\\nselect CustomerID,CustomerName,Location,Sales from CUSTOMER_New',",
+						"     isolationLevel: 'READ_UNCOMMITTED') ~> srcTarget",
+						"srcCustomer select(mapColumn(",
+						"          src_CustomerID = CustomerID,",
+						"          src_CustomerName = CustomerName,",
+						"          src_Location = Location,",
+						"          src_Sales = Sales",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> srcselect1",
+						"srcTarget select(mapColumn(",
+						"          trg_CustomerID = CustomerID,",
+						"          trg_CustomerName = CustomerName,",
+						"          trg_Location = Location,",
+						"          trg_Sales = Sales",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> trgselect1",
+						"srcselect1, trgselect1 exists(src_CustomerID == trg_CustomerID,",
+						"     negate:true,",
+						"     broadcast: 'auto')~> DoesNotExist",
+						"DoesNotExist derive(Flag = 'Inserted') ~> derivedColumn1",
+						"derivedColumn1 select(mapColumn(",
+						"          CustomerID = src_CustomerID,",
+						"          CustomerName = src_CustomerName,",
+						"          Location = src_Location,",
+						"          Sales = src_Sales,",
+						"          Flag",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"srcselect1, trgselect1 lookup(src_CustomerID == trg_CustomerID,",
+						"     multiple: false,",
+						"     pickup: 'any',",
+						"     broadcast: 'auto')~> lookup1",
+						"lookup1 filter(not(isNull(trg_CustomerID))) ~> filter1",
+						"filter1 derive(ischanged = iif(src_CustomerName!=trg_CustomerName || src_Location!=trg_Location || src_Sales!=trg_Sales, 'Yes', 'No'),",
+						"          Flag_up = 'Updated') ~> derivedColumn2",
+						"derivedColumn2 filter(ischanged=='Yes') ~> filter2",
+						"filter2 select(mapColumn(",
+						"          CustomerID = src_CustomerID,",
+						"          CustomerName = src_CustomerName,",
+						"          Location = src_Location,",
+						"          Sales = src_Sales,",
+						"          Flag_up",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select2",
+						"select2 alterRow(updateIf(1==1)) ~> alterRow1",
+						"select1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'table',",
+						"     store: 'sqlserver',",
+						"     schemaName: 'dbo',",
+						"     tableName: 'CUSTOMER_New',",
+						"     insertable: true,",
+						"     updateable: false,",
+						"     deletable: false,",
+						"     upsertable: false,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          src_CustomerID = CustomerID,",
+						"          CustomerName,",
+						"          Location,",
+						"          Sales,",
+						"          Flag",
+						"     )) ~> sink1",
+						"alterRow1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'table',",
+						"     store: 'sqlserver',",
+						"     schemaName: 'dbo',",
+						"     tableName: 'CUSTOMER_New',",
+						"     insertable: false,",
+						"     updateable: true,",
+						"     deletable: false,",
+						"     upsertable: false,",
+						"     keys:['CustomerID'],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/is_azursql_db_ls')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1_Target1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1_scD_Type2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1_df_scd_type2",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"srcCustomer": {},
+									"trgCustomer": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1_df_scd_type2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1_scdtype1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1_scd_type1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"srcCustomer": {},
+									"srcTarget": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1_scd_type1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1_aggregte')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_datafile_input_employee",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"linkedService": {
+								"referenceName": "Is_adls_sadhana",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "select1"
+						},
+						{
+							"name": "aggregate1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          EMPNO as short,",
+						"          ENAME as string,",
+						"          JOB as string,",
+						"          MGR as short,",
+						"          HIREDATE as string,",
+						"          SAL as double,",
+						"          COMM as string,",
+						"          DEPTNO as short",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 select(mapColumn(",
+						"          JOB,",
+						"          SAL",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 aggregate(groupBy(JOB),",
+						"     EMPcount = count(JOB),",
+						"          Sal = sum(SAL)) ~> aggregate1",
+						"aggregate1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'delimited',",
+						"     fileSystem: 'datafiles',",
+						"     folderPath: 'output/emp_aggr',",
+						"     columnDelimiter: ',',",
+						"     escapeChar: '\\\\',",
+						"     quoteChar: '\\\"',",
+						"     columnNamesAsHeader: false,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_datafile_input_employee')]",
+				"[concat(variables('factoryId'), '/linkedServices/Is_adls_sadhana')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1_derived_dataset')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_datafile_input_employee",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"linkedService": {
+								"referenceName": "Is_adls_sadhana",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          EMPNO as short,",
+						"          ENAME as string,",
+						"          JOB as string,",
+						"          MGR as short,",
+						"          HIREDATE as date,",
+						"          SAL as double,",
+						"          COMM as string,",
+						"          DEPTNO as short",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 derive(Hike = case(DEPTNO==10, SAL*0.10,case(DEPTNO==20, SAL*0.20, SAL*0.30))) ~> derivedColumn1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     fileSystem: 'datafiles',",
+						"     folderPath: 'output/employee_hike',",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_datafile_input_employee')]",
+				"[concat(variables('factoryId'), '/linkedServices/Is_adls_sadhana')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1_join_tr')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_datafile_input_employee",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						},
+						{
+							"linkedService": {
+								"referenceName": "Is_adls_sadhana",
+								"type": "LinkedServiceReference"
+							},
+							"name": "source2"
+						}
+					],
+					"sinks": [
+						{
+							"linkedService": {
+								"referenceName": "Is_adls_sadhana",
+								"type": "LinkedServiceReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "join1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          EMPNO as short,",
+						"          ENAME as string,",
+						"          JOB as string,",
+						"          MGR as short,",
+						"          HIREDATE as string,",
+						"          SAL as double,",
+						"          COMM as string,",
+						"          DEPTNO as short",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source(output(",
+						"          DEPTNO as short,",
+						"          DNAME as string,",
+						"          LOC as string",
+						"     ),",
+						"     useSchema: false,",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     format: 'delimited',",
+						"     fileSystem: 'datafiles',",
+						"     folderPath: 'input',",
+						"     fileName: 'dept_new.csv',",
+						"     columnDelimiter: ',',",
+						"     escapeChar: '\\\\',",
+						"     quoteChar: '\\\"',",
+						"     columnNamesAsHeader: true) ~> source2",
+						"source1, source2 join(source1@DEPTNO == source2@DEPTNO,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> join1",
+						"join1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'delimited',",
+						"     fileSystem: 'datafiles',",
+						"     folderPath: 'output/emp_join',",
+						"     columnDelimiter: ',',",
+						"     escapeChar: '\\\\',",
+						"     quoteChar: '\\\"',",
+						"     columnNamesAsHeader: false,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_datafile_input_employee')]",
+				"[concat(variables('factoryId'), '/linkedServices/Is_adls_sadhana')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1_aggreegate')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1_aggregte",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-09-18T15:20:54Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1_aggregte')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1_derived_column_transdformation')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1_derived_dataset",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-09-18T15:20:54Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1_derived_dataset')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1_join_transform')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1_join_tr",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"source2": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2024-09-18T15:20:54Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1_join_tr')]"
+			]
+		}
+	]
+}

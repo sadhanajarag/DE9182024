@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfsadhana"
+		},
+		"AzureSqlDatabase1_Target1_password": {
+			"value": ""
+		},
+		"Is_adls_sadhana_accountKey": {
+			"value": ""
+		},
+		"Is_adlsgen2_linked_ser_accountKey": {
+			"value": ""
+		},
+		"Is_adsl_sadhanaadsl_accountKey": {
+			"value": ""
+		},
+		"SqlServer1_self_hosted_password": {
+			"value": ""
+		},
+		"is_azursql_db_ls_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_Target1_properties_typeProperties_server": {
+			"value": "sadhanasql.database.windows.net"
+		},
+		"AzureSqlDatabase1_Target1_properties_typeProperties_database": {
+			"value": "Target"
+		},
+		"AzureSqlDatabase1_Target1_properties_typeProperties_userName": {
+			"value": "sadhana"
+		},
+		"Is_adls_sadhana_properties_typeProperties_url": {
+			"value": "https://sadhanaadls.dfs.core.windows.net/"
+		},
+		"Is_adlsgen2_linked_ser_properties_typeProperties_url": {
+			"value": "https://sadhanaadls.dfs.core.windows.net/"
+		},
+		"Is_adsl_sadhanaadsl_properties_typeProperties_url": {
+			"value": "https://sadhanaadsl.dfs.core.windows.net/"
+		},
+		"SqlServer1_self_hosted_properties_typeProperties_server": {
+			"value": "sadhana_jarag"
+		},
+		"SqlServer1_self_hosted_properties_typeProperties_database": {
+			"value": "SOURCE"
+		},
+		"SqlServer1_self_hosted_properties_typeProperties_userName": {
+			"value": "sadhana_patil/Sadha"
+		},
+		"is_azursql_db_ls_properties_typeProperties_server": {
+			"value": "sadhanasql.database.windows.net"
+		},
+		"is_azursql_db_ls_properties_typeProperties_database": {
+			"value": "SOURCE"
+		},
+		"is_azursql_db_ls_properties_typeProperties_userName": {
+			"value": "Sadhana"
+		}
+	}
+}
